@@ -1,5 +1,11 @@
 #include "main.h"
 
+/**
+ * print_alphabet - print low case alphabets followed by a new line
+ *
+ * Return: Void
+ */
+
 void print_alphabet(void)
 {
 	char letter;
