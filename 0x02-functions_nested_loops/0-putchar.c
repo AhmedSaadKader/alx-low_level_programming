@@ -1,4 +1,4 @@
-#include "_putchar.c"
+
 
 /**
  *main - Entry point
@@ -12,10 +12,10 @@ int main(void)
 	char *str = "_putchar\n";
 
 	while (*str != '\0')
-	  {
-	    _putchar(*str);
-	    str++;
-	  }
-  
+	{
+		   _putchar(*str);
+		   str++;
+	}
+
 	return (0);
-}  
+}
