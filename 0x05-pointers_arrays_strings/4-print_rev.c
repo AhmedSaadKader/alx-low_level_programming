@@ -12,7 +12,7 @@ void print_rev(char *s)
 
 	len = 0;
 	while (s[len] != '\0')
-	  len++;
+		len++;
 
 	for (reverse = len - 1; reverse >= 0; reverse--)
 		_putchar(s[reverse]);
