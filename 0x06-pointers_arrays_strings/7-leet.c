@@ -18,7 +18,7 @@ char *leet(char *str)
 		for (l = 0; l < 10; l++)
 		{
 			if (str[i] == c[l])
-				s[i] = n[i];
+				str[i] = n[i];
 		}
 	}
 	return (str);
