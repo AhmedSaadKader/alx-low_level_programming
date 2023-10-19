@@ -12,7 +12,7 @@ char *_strncat(char *dest, char *src, int n)
 {
 	int i; /* length of dest string */
 	int k; /* dest length added to n */
-	int l: /* integer to loop through second string */
+	int l; /* integer to loop through second string */
 
 	i = 0;
 	while (dest[i] != '\0')
