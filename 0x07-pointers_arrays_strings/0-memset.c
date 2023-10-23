@@ -22,6 +22,5 @@ char *_memset(char *s, char b, unsigned int n)
 		p[i] = byte;
 	}
 
-	return s;
-  
+	return (s);
 }
