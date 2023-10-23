@@ -15,11 +15,6 @@ char *_strchr(char *s, char c)
 
 	for (i = 0; s[i] != '\0'; i++)
 	{
-		if (c == '\0')
-		{
-			x = &s[i];
-			break;
-		}
 		if (s[i] == c)
 		{
 			x = &s[i];
