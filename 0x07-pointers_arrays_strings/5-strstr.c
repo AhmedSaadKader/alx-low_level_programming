@@ -33,7 +33,7 @@ char *_strstr(char *haystack, char *needle)
 					break;
 			}
 		}
-		if (n == d - 1)
+		if (n == d)
 		{
 			x = &haystack[i];
 			break;
