@@ -14,7 +14,7 @@ char *_strstr(char *haystack, char *needle)
 	int i, n, d, f;
 	char *x;
 
-	x = 0;
+	x = NULL;
 
 	/* get length of substring */
 	d = 0;
