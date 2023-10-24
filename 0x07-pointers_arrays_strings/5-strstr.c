@@ -32,11 +32,12 @@ char *_strstr(char *haystack, char *needle)
 				if (haystack[f] != needle[n])
 					break;
 			}
-		}
-		if (n == d)
-		{
-			x = &haystack[i];
-			break;
+
+			if (n == d)
+			{
+				x = &haystack[i];
+				break;
+			}
 		}
 	}
 
