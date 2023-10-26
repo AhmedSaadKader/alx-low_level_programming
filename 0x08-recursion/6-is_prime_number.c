@@ -18,7 +18,7 @@ int find_prime(int a, int n)
 		return (0);
 	if (a * a > n)
 		return (1);
-	if (n % a == 0 || n % (i + 2) == 0)
+	if (n % a == 0 || n % (a + 2) == 0)
 		return (find_prime(a + 6, n));
 }
 
