@@ -10,11 +10,6 @@
 
 int wildcmp(char *s1, char *s2)
 {
-	int a, b;
-
-	a = string_length(s1);
-	b = string_length(s2);
-
 	if (s1[0] == '\0' && s2[0] == '\0')
 		return (1);
 	if (s1[0] == s2[0])
