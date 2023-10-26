@@ -26,7 +26,7 @@ int string_length(char *s)
 
 int compare_letters(char *s, int start, int end)
 {
-	if (start == end)
+	if (start >= end)
 		return (1);
 
 	if (s[start] == s[end])
