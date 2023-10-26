@@ -12,14 +12,15 @@ int find_prime(int a, int n)
 {
 	if (n <= 1)
 		return (0);
-	if (n == 2 || n == 3)
+	if (n <= 3)
 		return (1);
 	if (n % 2 == 0 || n % 3 == 0)
 		return (0);
 	if (a * a > n)
 		return (1);
 	if (n % a == 0 || n % (a + 2) == 0)
-		return (find_prime(a + 6, n));
+		return (0);
+	return (find_prime(a + 6, n));
 }
 
 /**
