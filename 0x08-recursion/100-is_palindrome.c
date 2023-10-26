@@ -9,7 +9,7 @@
 
 int string_length(char *s)
 {
-	if (s == '\0')
+	if (s[0] == '\0')
 		return (0);
 
 	return (1 + string_length(s + 1));
