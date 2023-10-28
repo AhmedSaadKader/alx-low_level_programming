@@ -24,7 +24,6 @@ int main(int argc, char *argv[])
 				printf("Error\n");
 				return (1);
 			}
-			printf("i:%d, %s\n", i, argv[i]);
 		}
 		total += atoi(argv[i]);
 	}
