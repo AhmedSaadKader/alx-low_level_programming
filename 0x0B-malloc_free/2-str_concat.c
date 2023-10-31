@@ -11,7 +11,7 @@
 
 char *str_concat(char *s1, char *s2)
 {
-	int i, n, k, j;
+	int i, n, t, k, j;
 	char *ar;
 
 	i = 0;
@@ -21,14 +21,15 @@ char *str_concat(char *s1, char *s2)
 	while (s1[n] != '\0')
 		n++;
 
-	ar = malloc(sizeof(char) * i + n + 2);
+	t = i + n;
+	ar = malloc(sizeof(char) * t + 2);
 	if (ar == NULL)
 		return (NULL);
 	for (k = 0; k < i ; k++)
 	{
 		ar[k] = s1[k];
 	}
-	for (j = 0; k < i + n + 1; j++, k++)
+	for (j = 0; k < t + 2; j++, k++)
 	{
 		ar[k] = s2[j];
 	}
