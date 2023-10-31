@@ -18,11 +18,11 @@ char *str_concat(char *s1, char *s2)
 	while (s1[i] != '\0')
 		i++;
 	n = 0;
-	while (s1[n] != '\0')
+	while (s2[n] != '\0')
 		n++;
 
 	t = i + n;
-	ar = malloc(sizeof(char) * t + 2);
+	ar = malloc(sizeof(char) * t + 1);
 	if (ar == NULL)
 		return (NULL);
 	for (k = 0; k < i ; k++)
