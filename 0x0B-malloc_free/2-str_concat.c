@@ -29,7 +29,7 @@ char *str_concat(char *s1, char *s2)
 	{
 		ar[k] = s1[k];
 	}
-	for (j = 0; k < t + 2; j++, k++)
+	for (j = 0; k < t; j++, k++)
 	{
 		ar[k] = s2[j];
 	}
