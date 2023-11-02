@@ -55,7 +55,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 
 	for (i = 0; i < s1_len; i++)
 		constring[i] = s1[i];
-	for (k = 0; i < malloc_size - 1; k++, i++)
+	for (k = 0; i < malloc_size; k++, i++)
 		constring[i] = s2[k];
 	constring[malloc_size] = '\0';
 
