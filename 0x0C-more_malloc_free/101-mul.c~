@@ -1,0 +1,17 @@
+#include "main.h"
+
+/**
+ * mul - multiplies two positive numbers
+ * @num1: first number
+ * @num2: second number
+ *
+ * Return: result
+ */
+
+unsigned int mul(unsigned int num1, unsigned int num2)
+{
+	unsigned int result;
+
+	result = num1 * num2;
+	return (result);
+}
