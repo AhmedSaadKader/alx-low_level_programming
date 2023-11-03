@@ -20,7 +20,7 @@ int *array_range(int min, int max)
 
 	len = max - min + 1;
 	arr = malloc(len * sizeof(int));
-	if (malloc == NULL)
+	if (arr == NULL)
 		return (NULL);
 	for (i = 0; i <= len; i++)
 		arr[i] = min + i;
