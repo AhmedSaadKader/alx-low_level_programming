@@ -19,13 +19,13 @@ int main(int argc, char **argv)
 		printf("Error\n");
 		exit(98);
 	}
-	
+
 	calculation = get_op_func(argv[2]);
 
 	if (calculation == NULL)
 	{
-	  printf("Error\n");
-	  exit(99);
+		printf("Error\n");
+		exit(99);
 	}
 
 	printf("%d\n", calculation(atoi(argv[1]), atoi(argv[3])));
