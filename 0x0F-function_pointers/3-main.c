@@ -1,11 +1,13 @@
-#include "calc.h"
+#include "3-calc.h"
 
 /**
  * main - Entry point
  * 
  */
 
-int main(argc, argv)
+int main(int argc, char **argv)
 {
+	if (argc > 0 && argv)
+		return (0);
 	return (0);
 }
