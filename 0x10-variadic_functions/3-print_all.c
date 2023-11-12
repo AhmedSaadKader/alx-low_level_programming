@@ -16,7 +16,7 @@ void print_all(const char * const format, ...)
 		{"c", print_char},
 		{"i", print_int},
 		{"f", print_float},
-		{"s", print_char},
+		{"s", print_str},
 		{NULL, NULL}
 	};
 
@@ -31,8 +31,10 @@ void print_all(const char * const format, ...)
 			{
 				format_list[l].type_check(ap);
 				if (format[i + 1] != '\0')
+				{
 					printf(", ");
 					break;
+				}
 			}
 			l++;
 		}
@@ -73,7 +75,7 @@ void print_float(va_list args)
 }
 
 /**
- * print_string - prints string
+ * print_str - prints string
  * @args: variable argument
 */
 
