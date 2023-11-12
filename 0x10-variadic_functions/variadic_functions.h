@@ -16,7 +16,12 @@ void print_all(const char * const format, ...);
 typedef struct format_options
 {
 char *abb;
-char *type;
+char (*type_check)(va_list args);
 } f_o;
+
+void print_char(va_list args);
+void print_int(va_list args);
+void print_float(va_list args);
+void print_str(va_list args);
 
 #endif /* VARIADIC_FUNCTIONS */
