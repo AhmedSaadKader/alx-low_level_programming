@@ -1,7 +1,5 @@
-#ifndef _MAIN_H
-#define _MAIN_H
-
-#include <stddef.h>
+#ifndef _LIST_H
+#define _LIST_H
 
 int _putchar(char c);
 
@@ -20,4 +18,4 @@ struct list_t *next;
 
 size_t print_list(const list_t *h);
 
-#endif /* _MAIN_H */
+#endif /* _LIST_H */
