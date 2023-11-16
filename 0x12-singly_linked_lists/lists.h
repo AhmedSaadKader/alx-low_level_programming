@@ -1,6 +1,7 @@
 #ifndef _LIST_H
 #define _LIST_H
 
+#include <stddef.h>
 int _putchar(char c);
 
 /**
