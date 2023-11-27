@@ -35,14 +35,14 @@ int cp(const char *filename_from, const char *filename_to)
 
 	fd_to = open(filename_to, O_WRONLY | O_CREAT, 0644);
 	if (fd_to == -1)
-		return (-1);
+		return (99);
 	if (buffer != NULL)
 	{
 		wr = write(fd_to, buffer, rd);
 		if (wr == -1)
 		{
 			close(fd_to);
-			return (-1);
+			return (99);
 		}
 	}
 
@@ -73,6 +73,11 @@ int main(int ac, char **av)
 	if (res == 98)
 	{
 		dprintf(2, "Error: Can't read from file %s\n", av[1]);
+		exit(res);
+	}
+	if (res == 99)
+	{
+		dprintf(2, "Can't write to %s", av[2]);
 		exit(res);
 	}
 	return (0);
