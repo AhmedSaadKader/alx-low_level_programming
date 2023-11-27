@@ -26,13 +26,9 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 	}
 	buffer[sz] = '\0';
-	while (i < sz)
+	while (buffer[i] != '\0')
 	{
-		if (_putchar(buffer[i]) == EOF)
-		{
-			close(fd);
-			return(0);
-		}
+		_putchar(buffer[i]);
 		i++;
 	}
 	close(fd);
