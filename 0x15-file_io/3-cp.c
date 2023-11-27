@@ -66,7 +66,7 @@ int main(int ac, char **av)
 
 	if (ac != 3)
 	{
-		dprintf(2, "Usage: %s file_from file_to\n", av[0]);
+		dprintf(2, "Usage: %s file_from file_t\n", av[0]);
 		exit(97);
 	}
 	res = cp(av[1], av[2]);
