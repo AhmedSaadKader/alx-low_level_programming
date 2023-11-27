@@ -22,7 +22,7 @@ int cp(const char *filename_from, const char *filename_to)
 
 	fd_from = open(filename_from, O_RDONLY);
 	if (fd_from == -1)
-		return (-1);
+		return (98);
 	buffer = malloc(buffer_size);
 	if (buffer == NULL)
 		return (-1);
@@ -30,7 +30,7 @@ int cp(const char *filename_from, const char *filename_to)
 	if (rd == -1)
 	{
 		close(rd);
-		return (-1);
+		return (98);
 	}
 
 	fd_to = open(filename_to, O_WRONLY | O_CREAT, 0644);
@@ -72,7 +72,7 @@ int main(int ac, char **av)
 	res = cp(av[1], av[2]);
 	if (res == 98)
 	{
-		dprintf(2, "Error: Can't read from fil %s\n", av[1]);
+		dprintf(2, "Error: Can't read from file %s\n", av[1]);
 		exit(98);
 	}
 	if (res == 99)
