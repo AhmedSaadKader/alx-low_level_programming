@@ -73,12 +73,12 @@ int main(int ac, char **av)
 	if (res == 98)
 	{
 		dprintf(2, "Error: Can't read from file %s\n", av[1]);
-		exit(res);
+		exit(98);
 	}
 	if (res == 99)
 	{
 		dprintf(2, "Can't write to %s", av[2]);
-		exit(res);
+		exit(99);
 	}
 	return (0);
 }
