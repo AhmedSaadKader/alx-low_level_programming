@@ -14,7 +14,7 @@ int cp(const char *filename_from, const char *filename_to)
 {
 	int fd_from, fd_to;
 	int rd, wr;
-	char *buffer[1024];
+	char buffer[1024];
 
 	if (filename_from == NULL)
 		return (98);
