@@ -5,19 +5,10 @@
 #include <elf.h>
 
 /**
- * print_error - prints errors
- * @msg: the error msg
-*/
-void print_error(const char *msg)
-{
-	fprintf(stderr, "%s\n", msg);
-	exit(98);
-}
-
-/**
  * display_elf_header - displays elf header
  * @filename: filename
 */
+
 void display_elf_header(const char *filename)
 {
 	int fd;
@@ -25,18 +16,26 @@ void display_elf_header(const char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		print_error("Error: Unable to open file");
+	{
+		dprintf("Error: Unable to open file");
+		exit(98);
+	}
 	if (lseek(fd, 0, SEEK_SET) == -1)
-		print_error("Error: Unable to set file offset");
+	{
+		dprintf("Error: Unable to set file offset");
+		exit(98);
+	}
 	if (read(fd, &elf_header, sizeof(Elf64_Ehdr)) != sizeof(Elf64_Ehdr))
 	{
-		print_error("Error: Unable to read ELF header");
+		dprintf("Error: Unable to read ELF header");
+		exit(98);
 	}
 	if (elf_header.e_ident[EI_MAG0] != ELFMAG0 ||
 		elf_header.e_ident[EI_MAG1] != ELFMAG1 ||
 		elf_header.e_ident[EI_MAG2] != ELFMAG2 ||
 		elf_header.e_ident[EI_MAG3] != ELFMAG3)
-		print_error("Error: Not an ELF file");
+		dprintf("Error: Not an ELF file");
+		exit(98);
 	printf("Magic:   %02x %02x %02x %02x\n", elf_header.e_ident[EI_MAG0],
 			elf_header.e_ident[EI_MAG1],
 		   elf_header.e_ident[EI_MAG2], elf_header.e_ident[EI_MAG3]);
@@ -66,7 +65,8 @@ int main(int argc, char *argv[])
 {
 	if (argc != 2)
 	{
-		print_error("Usage: elf_header elf_filename");
+		dprintf("Usage: elf_header elf_filename");
+		exit(98);
 	}
 
 	display_elf_header(argv[1]);
