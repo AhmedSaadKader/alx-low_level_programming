@@ -18,12 +18,9 @@ int cp(const char *filename_from, const char *filename_to)
 
 	if (filename_from == NULL)
 		return (98);
-
 	fd_from = open(filename_from, O_RDONLY);
 	if (fd_from == -1)
 		return (98);
-
-
 
 	fd_to = open(filename_to, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd_to == -1)
@@ -31,8 +28,6 @@ int cp(const char *filename_from, const char *filename_to)
 		close(fd_from);
 		return (99);
 	}
-
-
 	while ((rd = read(fd_from, buffer, 1024)) > 0)
 	{
 		wr = write(fd_to, buffer, rd);
@@ -43,13 +38,11 @@ int cp(const char *filename_from, const char *filename_to)
 			return (99);
 		}
 	}
-
 	if (rd == -1)
 	{
 		close(fd_from);
 		return (98);
 	}
-
 	close(fd_to);
 	close(fd_from);
 	return (1);
