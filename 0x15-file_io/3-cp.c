@@ -20,7 +20,7 @@ int cp(const char *filename_from, const char *filename_to)
 	fd_from = open(filename_from, O_RDONLY);
 	if (fd_from == -1)
 		return (98);
-	fd_to = open(filename_to, O_WRONLY | O_CREAT | O_TRUNC, 0600);
+	fd_to = open(filename_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (fd_to == -1)
 	{
 		close(fd_from);
