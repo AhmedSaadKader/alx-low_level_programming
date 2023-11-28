@@ -27,7 +27,10 @@ int cp(const char *filename_from, const char *filename_to)
 
 	fd_to = open(filename_to, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd_to == -1)
+	{
+		close(fd_from);
 		return (99);
+	}
 
 
 	while ((rd = read(fd_from, buffer, 1024)) > 0)
@@ -77,7 +80,7 @@ int main(int ac, char **av)
 	}
 	if (res == 99)
 	{
-		dprintf(2, "Can't write to %s", av[2]);
+		dprintf(2, "Error: Can't write to %s\n", av[2]);
 		exit(99);
 	}
 	return (0);
