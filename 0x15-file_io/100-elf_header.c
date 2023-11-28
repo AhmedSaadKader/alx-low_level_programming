@@ -4,6 +4,13 @@
 #include <fcntl.h>
 #include <elf.h>
 
+void print_error(char *msg, int exit_no);
+int check_elf(unsigned char *magic_number);
+void print_magic_number(unsigned char *magic_number);
+void print_class(unsigned char *elf_header_id);
+void print_data(unsigned char *elf_header_id);
+void display_elf_header(const char *filename);
+
 /**
  * print_error - prints error
  * @msg: the message to print
@@ -30,6 +37,62 @@ int check_elf(unsigned char *magic_number)
 		return (-1);
 	return (1);
 }
+
+/**
+ * print_magic_number - prints the magic number
+ * @magic_number: ident of header
+*/
+
+void print_magic_number(unsigned char *magic_number)
+{
+	int i;
+
+	printf("  Magic:   ");
+	for (i = 0; i < EI_NIDENT; i++)
+	{
+		if (i == EI_NIDENT - 1)
+			printf("%02x\n", magic_number[i]);
+		else
+			printf("%02x ", magic_number[i]);
+	}
+}
+
+/**
+ * print_class - prints class
+ * @elf_header_id: class
+*/
+
+void print_class(unsigned char *elf_header_id)
+{
+	printf("  Class:                             ");
+	if (elf_header_id[EI_CLASS] == ELFCLASSNONE)
+		printf("none\n");
+	else if (elf_header_id[EI_CLASS] == ELFCLASS64)
+		printf("ELF64\n");
+	else if (elf_header_id[EI_CLASS] == ELFCLASS32)
+		printf("ELF32\n");
+	else
+		printf("<unknown: %x>\n", elf_header_id[EI_CLASS]);
+}
+
+/**
+ * print_data - prints data
+ * @elf_header_id: elf header id
+*/
+
+void print_data(unsigned char *elf_header_id)
+{
+	printf("  Data:                              ");
+	if (elf_header_id[EI_DATA] == ELFDATANONE)
+		printf("none\n");
+	else if (elf_header_id[EI_DATA] == ELFDATA2LSB)
+		printf("2's complement, little endian\n");
+	else if (elf_header_id[EI_DATA] == ELFDATA2MSB)
+		printf("2's complement, big endian\n");
+	else
+		printf("<unknown: %x>\n", elf_header_id[EI_DATA]);
+}
+
 
 /**
  * display_elf_header - displays elf header
@@ -62,6 +125,9 @@ void display_elf_header(const char *filename)
 		close(fd);
 		print_error("Error: File is not an ELF\n", 98);
 	}
+	print_magic_number(elf_header->e_ident);
+	print_class(elf_header->e_ident);
+	print_data(elf_header->e_ident);
 	printf("%ld\n", elf_header->e_entry);
 	printf("%d\n", elf_header->e_version);
 	printf("%d\n", elf_header->e_type);
