@@ -14,8 +14,7 @@ int cp(const char *filename_from, const char *filename_to)
 {
 	int fd_from, fd_to;
 	int rd, wr;
-	int buffer_size = 1024;
-	char *buffer;
+	char *buffer[1024];
 
 	if (filename_from == NULL)
 		return (98);
@@ -23,20 +22,15 @@ int cp(const char *filename_from, const char *filename_to)
 	fd_from = open(filename_from, O_RDONLY);
 	if (fd_from == -1)
 		return (98);
-	buffer = malloc(buffer_size);
-	if (buffer == NULL)
-		return (-1);
-	rd = read(fd_from, buffer, buffer_size);
-	if (rd == -1)
-	{
-		close(fd_from);
-		return (98);
-	}
+
+
 
 	fd_to = open(filename_to, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd_to == -1)
 		return (99);
-	if (buffer != NULL)
+
+
+	while ((rd = read(fd_from, buffer, 1024)) > 0)
 	{
 		wr = write(fd_to, buffer, rd);
 		if (wr == -1)
@@ -47,7 +41,12 @@ int cp(const char *filename_from, const char *filename_to)
 		}
 	}
 
-	free(buffer);
+	if (rd == -1)
+	{
+		close(fd_from);
+		return (98);
+	}
+
 	close(fd_to);
 	close(fd_from);
 	return (1);
