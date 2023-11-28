@@ -28,7 +28,7 @@ int check_elf(unsigned char *magic_number)
 	if (magic_number[0] != 127 || magic_number[1] != 'E' ||
 		magic_number[2] != 'L' || magic_number[3] != 'F')
 		return (-1);
-	return(1);
+	return (1);
 }
 
 /**
