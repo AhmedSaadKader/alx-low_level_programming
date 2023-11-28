@@ -29,11 +29,11 @@ int cp(const char *filename_from, const char *filename_to)
 	rd = read(fd_from, buffer, buffer_size);
 	if (rd == -1)
 	{
-		close(rd);
+		close(fd_from);
 		return (98);
 	}
 
-	fd_to = open(filename_to, O_WRONLY | O_CREAT, 0644);
+	fd_to = open(filename_to, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd_to == -1)
 		return (99);
 	if (buffer != NULL)
@@ -41,6 +41,7 @@ int cp(const char *filename_from, const char *filename_to)
 		wr = write(fd_to, buffer, rd);
 		if (wr == -1)
 		{
+			close(fd_from);
 			close(fd_to);
 			return (99);
 		}
