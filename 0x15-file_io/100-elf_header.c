@@ -93,6 +93,20 @@ void print_data(unsigned char *elf_header_id)
 		printf("<unknown: %x>\n", elf_header_id[EI_DATA]);
 }
 
+/**
+ * print_version - prints version
+ * @elf_header_id: header id
+*/
+
+void print_version(unsigned char *elf_header_id)
+{
+	printf("  Version:                           %d", elf_header_id[EI_VERSION]);
+	if (elf_header_id[EI_VERSION] == EV_CURRENT)
+		printf(" (current)\n");
+	else
+		printf("\n");
+}
+
 
 /**
  * display_elf_header - displays elf header
@@ -128,13 +142,7 @@ void display_elf_header(const char *filename)
 	print_magic_number(elf_header->e_ident);
 	print_class(elf_header->e_ident);
 	print_data(elf_header->e_ident);
-	printf("%ld\n", elf_header->e_entry);
-	printf("%d\n", elf_header->e_version);
-	printf("%d\n", elf_header->e_type);
-	printf("%d\n", elf_header->e_flags);
-	printf("%d\n", elf_header->e_ehsize);
-	printf("%d\n", elf_header->e_phentsize);
-	printf("%02x\n", elf_header->e_ident[1]);
+	print_version(elf_header->e_ident);
 	free(elf_header);
 	close(fd);
 }
