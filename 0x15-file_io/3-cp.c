@@ -43,8 +43,16 @@ int cp(const char *filename_from, const char *filename_to)
 		close(fd_from);
 		return (98);
 	}
-	close(fd_to);
-	close(fd_from);
+	if (close(fd_to) == -1)
+	{
+		dprintf(2, "Error: Can't close fd %d\n", fd_from);
+		return (100);
+	}
+	if (close(fd_from) == -1)
+	{
+		dprintf(2, "Error: Can't close fd %d\n", fd_to);
+		return (100);
+	}
 	return (1);
 }
 
@@ -76,5 +84,8 @@ int main(int ac, char **av)
 		dprintf(2, "Error: Can't write to %s\n", av[2]);
 		exit(99);
 	}
+	if (res == 100)
+		exit(100);
+
 	return (0);
 }
