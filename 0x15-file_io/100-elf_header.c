@@ -17,12 +17,12 @@ void display_elf_header(const char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
-		dprintf(2, "Error: Unable to open file");
+		dprintf(STDERR_FILENO, "Error: Unable to open file");
 		exit(98);
 	}
 	if (read(fd, &elf_header, sizeof(Elf64_Ehdr)) != sizeof(Elf64_Ehdr))
 	{
-		dprintf(2, "Error: Unable to read ELF header");
+		dprintf(STDERR_FILENO, "Error: Unable to read ELF header");
 		exit(98);
 	}
 	if (elf_header.e_ident[EI_MAG0] != ELFMAG0 ||
@@ -30,7 +30,7 @@ void display_elf_header(const char *filename)
 		elf_header.e_ident[EI_MAG2] != ELFMAG2 ||
 		elf_header.e_ident[EI_MAG3] != ELFMAG3)
 	{
-		dprintf(2, "Error: Not an ELF file");
+		dprintf(STDERR_FILENO, "Error: Not an ELF file");
 		exit(98);
 	}
 	printf("Magic:   %02x %02x %02x %02x\n", elf_header.e_ident[EI_MAG0],
@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 {
 	if (argc != 2)
 	{
-		dprintf(2, "Usage: elf_header elf_filename");
+		dprintf(STDERR_FILENO, "Usage: elf_header elf_filename");
 		exit(98);
 	}
 
