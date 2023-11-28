@@ -12,8 +12,7 @@
 
 int cp(const char *filename_from, const char *filename_to)
 {
-	int fd_from, fd_to;
-	int rd, wr;
+	int fd_from, fd_to, rd, wr;
 	char buffer[1024];
 
 	if (filename_from == NULL)
@@ -21,12 +20,15 @@ int cp(const char *filename_from, const char *filename_to)
 	fd_from = open(filename_from, O_RDONLY);
 	if (fd_from == -1)
 		return (98);
-
-	fd_to = open(filename_to, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	fd_to = open(filename_to, O_WRONLY | O_CREAT | O_TRUNC | O_EXCL, 0644);
 	if (fd_to == -1)
 	{
-		close(fd_from);
-		return (99);
+		fd_to = open(filename_to, O_WRONLY | O_TRUNC);
+		if (fd_to == -1)
+		{
+			close(fd_from);
+			return (99);
+		}
 	}
 	while ((rd = read(fd_from, buffer, 1024)) > 0)
 	{
