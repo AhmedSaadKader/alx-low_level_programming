@@ -19,8 +19,8 @@ int cp(const char *filename_from, const char *filename_to)
 		return (98);
 	fd_from = open(filename_from, O_RDONLY);
 	if (fd_from == -1)
-		return (98);
-	fd_to = open(filename_to, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		return (101);
+	fd_to = open(filename_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (fd_to == -1)
 	{
 		close(fd_from);
@@ -75,6 +75,11 @@ int main(int ac, char **av)
 	if (res == 98)
 	{
 		dprintf(2, "Error: Can't read from file %s\n", av[1]);
+		exit(98);
+	}
+	if (res == 101)
+	{
+		dprintf(1, "Error: Can't read from file %s\n", av[1]);
 		exit(98);
 	}
 	if (res == 99)
