@@ -58,6 +58,7 @@
 "C_Cpp_Runner.msvcSecureNoWarnings": false,
 "files.associations": {
 	"*.ejs": "html",
-	"main.h": "c"
+	"main.h": "c",
+	"lib_math.h": "c"
 }
 }
