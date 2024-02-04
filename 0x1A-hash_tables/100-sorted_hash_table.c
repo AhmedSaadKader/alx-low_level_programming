@@ -121,6 +121,11 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 			ht->array[index]->value = strdup(value);
 			return (1);
 		}
+		if (current_node->next == NULL)
+		{
+			current_node->next = new_node;
+			return (1);
+		}
 		current_node = current_node->next;
 	}
 	new_node->next = current_node;
