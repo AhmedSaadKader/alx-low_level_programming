@@ -10,7 +10,7 @@
  */
 int main(void)
 {
-	shash_table_t *ht;
+	shash_table_t *ht, *ht_h;
 
 	ht = shash_table_create(1024);
 	shash_table_set(ht, "y", "0");
@@ -31,5 +31,13 @@ int main(void)
 	shash_table_print(ht);
 	shash_table_print_rev(ht);
 		shash_table_delete(ht);
+	ht_h = shash_table_create(1024);
+	shash_table_set(ht_h, "Holberton", "is cool");
+	shash_table_print(ht_h);
+	shash_table_set(ht_h, "Holberton", "is soooo cooool");
+	shash_table_print(ht_h);
+	shash_table_set(ht_h, "Holberton", "is awesome");
+	shash_table_print(ht_h);
+	shash_table_print_rev(ht_h);
 	return (EXIT_SUCCESS);
 }

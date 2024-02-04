@@ -91,10 +91,12 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 			}
 			else if (key_order == 0)
 			{
+				free(sorted_list->value);
+				sorted_list->value = strdup(value);
 				free(new_node->key);
 				free(new_node->value);
 				free(new_node);
-				sorted_list->value = strdup(value);
+				return (1);
 			}
 			sorted_list = sorted_list->snext;
 		}
@@ -115,10 +117,11 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	{
 		if (strcmp(current_node->key, key) == 0)
 		{
+			free(current_node->value);
+			current_node->value = strdup(value);
 			free(new_node->key);
 			free(new_node->value);
 			free(new_node);
-			ht->array[index]->value = strdup(value);
 			return (1);
 		}
 		if (current_node->next == NULL)
@@ -227,7 +230,6 @@ void shash_table_delete(shash_table_t *ht)
 		return;
 
 	current_node = ht->shead;
-	next_node = current_node->snext;
 	while (current_node != NULL)
 	{
 		next_node = current_node->snext;
@@ -239,5 +241,7 @@ void shash_table_delete(shash_table_t *ht)
 	ht->shead = NULL;
 	ht->stail = NULL;
 	free(ht->array);
+	ht->array = NULL;
+	ht->size = 0;
 	free(ht);
 }
