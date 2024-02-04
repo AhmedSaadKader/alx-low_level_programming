@@ -84,7 +84,7 @@ void add_node_to_sorted_list(shash_table_t *ht, shash_node_t *new_node)
 	while (sorted_list != NULL)
 	{
 		key_order = strcmp(sorted_list->key, new_node->key);
-		if (key_order > 0)
+		if (key_order < 0)
 		{
 			new_node->snext = sorted_list;
 			new_node->sprev = sorted_list->sprev;
@@ -137,7 +137,8 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	new_node = shash_node_create(key, value);
 	if (new_node == NULL)
 		return (0);
-	new_node->next = current_node;
+	if (current_node != NULL)
+		new_node->next = current_node;
 	ht->array[index] = new_node;
 	add_node_to_sorted_list(ht, new_node);
 	return (1);
