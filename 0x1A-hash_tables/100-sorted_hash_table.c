@@ -100,13 +100,6 @@ void add_node_to_sorted_list(shash_table_t *ht, shash_node_t *new_node)
 			sorted_list->sprev = new_node;
 			return;
 		}
-		else if (key_order == 0)
-		{
-			free(new_node->key);
-			free(new_node->value);
-			free(new_node);
-			return;
-		}
 		if (sorted_list->snext == NULL)
 		{
 			new_node->sprev = sorted_list;
