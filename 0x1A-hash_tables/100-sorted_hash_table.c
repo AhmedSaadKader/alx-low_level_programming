@@ -81,25 +81,41 @@ void add_node_to_sorted_list(shash_table_t *ht, shash_node_t *new_node)
 		return;
 	}
 	sorted_list = ht->shead;
+	key_order = strcmp(sorted_list->key, new_node->key);
+	if (key_order > 0)
+	{
+		new_node->snext = sorted_list;
+		sorted_list->sprev = new_node;
+		ht->shead = new_node;
+		return;
+	}
 	while (sorted_list != NULL)
 	{
 		key_order = strcmp(sorted_list->key, new_node->key);
-		if (key_order < 0)
+		if (key_order > 0)
 		{
 			new_node->snext = sorted_list;
 			new_node->sprev = sorted_list->sprev;
+			sorted_list->sprev->snext = new_node;
 			sorted_list->sprev = new_node;
-			if (sorted_list->sprev != NULL)
-				sorted_list->sprev->snext = new_node;
-			else
-				ht->shead = new_node;
+			return;
+		}
+		else if (key_order == 0)
+		{
+			free(new_node->key);
+			free(new_node->value);
+			free(new_node);
+			return;
+		}
+		if (sorted_list->snext == NULL)
+		{
+			new_node->sprev = sorted_list;
+			sorted_list->snext = new_node;
+			ht->stail = new_node;
 			return;
 		}
 		sorted_list = sorted_list->snext;
 	}
-	new_node->sprev = ht->stail;
-	ht->stail->snext = new_node;
-	ht->stail = new_node;
 }
 
 /**
