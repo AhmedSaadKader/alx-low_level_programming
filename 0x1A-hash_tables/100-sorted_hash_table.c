@@ -137,8 +137,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	new_node = shash_node_create(key, value);
 	if (new_node == NULL)
 		return (0);
-	if (current_node != NULL)
-		new_node->next = current_node;
+	new_node->next = current_node;
 	ht->array[index] = new_node;
 	add_node_to_sorted_list(ht, new_node);
 	return (1);
@@ -250,5 +249,5 @@ void shash_table_delete(shash_table_t *ht)
 	free(ht->array);
 	ht->shead = NULL;
 	ht->stail = NULL;
-	free(ht->array);
+	free(ht);
 }
