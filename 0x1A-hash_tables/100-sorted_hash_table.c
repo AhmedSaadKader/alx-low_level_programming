@@ -232,7 +232,8 @@ void shash_table_print_rev(const shash_table_t *ht)
 
 void shash_table_delete(shash_table_t *ht)
 {
-	shash_node_t *current_node, *next_node;
+	shash_node_t *current_node, *next_node, *next;
+	unsigned long int i;
 
 	if (ht == NULL || ht->array == NULL || ht->size == 0)
 		return;
