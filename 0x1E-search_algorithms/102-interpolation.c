@@ -12,10 +12,12 @@
 
 int interpolation_search(int *array, size_t size, int value)
 {
-    if (array == NULL || size == 0)
-        return (-1);
+	if (array == NULL || size == 0)
+		return (-1);
 
-    return interpolation_search_recursive(array, 0, size, value);
+	return (
+		interpolation_search_recursive(array, 0, size, value)
+	);
 }
 
 /**
